@@ -1,0 +1,44 @@
+---
+title: "ROS for Robotics Development"
+description: "Getting started with ROS 2 — nodes, topics, services, and best practices for scalable robot software."
+date: 2024-06-10
+tags: ["ROS", "Robotics", "Tutorial"]
+published: true
+---
+
+The Robot Operating System (ROS) remains the de facto middleware for robotics R&D and production deployments.
+
+## ROS 1 vs ROS 2
+
+ROS 2 brings:
+
+- DDS-based communication (real-time friendly)
+- Better security and multi-robot support
+- Native Windows support
+- Lifecycle nodes for managed states
+
+## Core Concepts
+
+**Nodes** are processes. **Topics** are async pub/sub channels. **Services** are sync RPC. **Actions** handle long-running tasks with feedback.
+
+```bash
+ros2 run turtlesim turtlesim_node
+ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0}}"
+```
+
+## Project Structure
+
+Use colcon workspaces with clear package boundaries:
+
+- `perception` — drivers and detectors
+- `localization` — SLAM, AMCL
+- `navigation` — Nav2 configs
+- `bringup` — launch files
+
+## Tips
+
+- Always use `ros2 bag record` during field tests.
+- Parameterize everything — avoid hardcoded IPs and frame IDs.
+- Document your TF tree obsessively.
+
+ROS 2 Humble on Ubuntu 22.04 is my recommended LTS stack for new projects.

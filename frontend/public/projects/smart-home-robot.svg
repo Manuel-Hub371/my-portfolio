@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" fill="none">
+  <rect width="800" height="440" fill="url(#g1)"/>
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="800" y2="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <!-- Robot body -->
+  <rect x="320" y="160" width="160" height="140" rx="18" fill="white" fill-opacity="0.15"/>
+  <!-- Robot head -->
+  <rect x="340" y="110" width="120" height="80" rx="14" fill="white" fill-opacity="0.2"/>
+  <!-- Eyes -->
+  <circle cx="370" cy="148" r="14" fill="white" fill-opacity="0.9"/>
+  <circle cx="430" cy="148" r="14" fill="white" fill-opacity="0.9"/>
+  <circle cx="370" cy="148" r="7" fill="#2563eb"/>
+  <circle cx="430" cy="148" r="7" fill="#2563eb"/>
+  <!-- Antenna -->
+  <line x1="400" y1="110" x2="400" y2="80" stroke="white" stroke-opacity="0.6" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="400" cy="72" r="8" fill="white" fill-opacity="0.8"/>
+  <!-- Arms -->
+  <rect x="260" y="175" width="60" height="22" rx="11" fill="white" fill-opacity="0.15"/>
+  <rect x="480" y="175" width="60" height="22" rx="11" fill="white" fill-opacity="0.15"/>
+  <!-- Legs -->
+  <rect x="340" y="300" width="40" height="60" rx="10" fill="white" fill-opacity="0.15"/>
+  <rect x="420" y="300" width="40" height="60" rx="10" fill="white" fill-opacity="0.15"/>
+  <!-- Chest panel -->
+  <rect x="345" y="185" width="110" height="70" rx="8" fill="white" fill-opacity="0.1"/>
+  <rect x="355" y="195" width="30" height="8" rx="4" fill="white" fill-opacity="0.5"/>
+  <rect x="355" y="210" width="50" height="8" rx="4" fill="white" fill-opacity="0.4"/>
+  <rect x="355" y="225" width="40" height="8" rx="4" fill="white" fill-opacity="0.3"/>
+  <!-- Label -->
+  <text x="400" y="410" font-family="monospace" font-size="18" fill="white" fill-opacity="0.7" text-anchor="middle" font-weight="bold">Smart Home Robot</text>
+</svg>

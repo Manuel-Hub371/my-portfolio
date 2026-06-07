@@ -1,0 +1,130 @@
+{
+  "cacheItemsMap": {
+    "blog/building-ai-agents-with-rag.mdx": {
+      "document": {
+        "title": "Building AI Agents with RAG",
+        "description": "A practical guide to retrieval-augmented generation for enterprise knowledge bases and task-oriented agents.",
+        "date": "2024-11-15T00:00:00.000Z",
+        "tags": [
+          "AI",
+          "RAG",
+          "LangChain",
+          "LLM"
+        ],
+        "published": true,
+        "body": {
+          "raw": "\nRetrieval-Augmented Generation (RAG) has become the standard pattern for grounding large language models in private, up-to-date knowledge. In this article, I walk through a production-ready architecture.\n\n## Why RAG?\n\nPure LLMs hallucinate on domain-specific facts. RAG injects relevant context at inference time, improving accuracy while keeping models smaller and cheaper.\n\n## Architecture Overview\n\n1. **Ingestion** — Parse PDFs, docs, and wikis into chunks with metadata.\n2. **Embedding** — Store vectors in PostgreSQL with `pgvector` or a dedicated vector DB.\n3. **Retrieval** — Hybrid search combining dense embeddings and BM25 sparse retrieval.\n4. **Generation** — Prompt the LLM with retrieved chunks and strict citation rules.\n\n```python\nfrom langchain.chains import RetrievalQA\nfrom langchain.vectorstores import PGVector\n\nvectorstore = PGVector(connection_string=DATABASE_URL, embedding_function=embeddings)\nqa = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever())\n```\n\n## Key Lessons\n\n- Chunk size matters: 512–1024 tokens with overlap works well for technical docs.\n- Always log retrieval scores for debugging bad answers.\n- Use rerankers when precision is critical.\n\n## Next Steps\n\nCombine RAG with tool-calling agents for workflows that need both knowledge lookup and API actions.\n",
+          "code": "var Component=(()=>{var g=Object.create;var s=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,w=Object.prototype.hasOwnProperty;var v=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),k=(r,e)=>{for(var t in e)s(r,t,{get:e[t],enumerable:!0})},o=(r,e,t,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of m(e))!w.call(r,i)&&i!==t&&s(r,i,{get:()=>e[i],enumerable:!(a=p(e,i))||a.enumerable});return r};var A=(r,e,t)=>(t=r!=null?g(u(r)):{},o(e||!r||!r.__esModule?s(t,\"default\",{value:r,enumerable:!0}):t,r)),f=r=>o(s({},\"__esModule\",{value:!0}),r);var l=v((x,c)=>{c.exports=_jsx_runtime});var b={};k(b,{default:()=>h,frontmatter:()=>y});var n=A(l()),y={title:\"Building AI Agents with RAG\",description:\"A practical guide to retrieval-augmented generation for enterprise knowledge bases and task-oriented agents.\",date:\"2024-11-15\",tags:[\"AI\",\"RAG\",\"LangChain\",\"LLM\"],published:!0};function d(r){let e={code:\"code\",h2:\"h2\",li:\"li\",ol:\"ol\",p:\"p\",pre:\"pre\",span:\"span\",strong:\"strong\",ul:\"ul\",...r.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"Retrieval-Augmented Generation (RAG) has become the standard pattern for grounding large language models in private, up-to-date knowledge. In this article, I walk through a production-ready architecture.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"why-rag\",children:\"Why RAG?\"}),`\n`,(0,n.jsx)(e.p,{children:\"Pure LLMs hallucinate on domain-specific facts. RAG injects relevant context at inference time, improving accuracy while keeping models smaller and cheaper.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"architecture-overview\",children:\"Architecture Overview\"}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Ingestion\"}),\" \\u2014 Parse PDFs, docs, and wikis into chunks with metadata.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Embedding\"}),\" \\u2014 Store vectors in PostgreSQL with \",(0,n.jsx)(e.code,{children:\"pgvector\"}),\" or a dedicated vector DB.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Retrieval\"}),\" \\u2014 Hybrid search combining dense embeddings and BM25 sparse retrieval.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Generation\"}),\" \\u2014 Prompt the LLM with retrieved chunks and strict citation rules.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsxs)(e.code,{className:\"hljs language-python\",children:[(0,n.jsx)(e.span,{className:\"hljs-keyword\",children:\"from\"}),\" langchain.chains \",(0,n.jsx)(e.span,{className:\"hljs-keyword\",children:\"import\"}),` RetrievalQA\n`,(0,n.jsx)(e.span,{className:\"hljs-keyword\",children:\"from\"}),\" langchain.vectorstores \",(0,n.jsx)(e.span,{className:\"hljs-keyword\",children:\"import\"}),` PGVector\n\nvectorstore = PGVector(connection_string=DATABASE_URL, embedding_function=embeddings)\nqa = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever())\n`]})}),`\n`,(0,n.jsx)(e.h2,{id:\"key-lessons\",children:\"Key Lessons\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Chunk size matters: 512\\u20131024 tokens with overlap works well for technical docs.\"}),`\n`,(0,n.jsx)(e.li,{children:\"Always log retrieval scores for debugging bad answers.\"}),`\n`,(0,n.jsx)(e.li,{children:\"Use rerankers when precision is critical.\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"next-steps\",children:\"Next Steps\"}),`\n`,(0,n.jsx)(e.p,{children:\"Combine RAG with tool-calling agents for workflows that need both knowledge lookup and API actions.\"})]})}function h(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(d,{...r})}):d(r)}return f(b);})();\n;return Component;"
+        },
+        "_id": "blog/building-ai-agents-with-rag.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/building-ai-agents-with-rag.mdx",
+          "sourceFileName": "building-ai-agents-with-rag.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/building-ai-agents-with-rag"
+        },
+        "type": "Post",
+        "slug": "building-ai-agents-with-rag",
+        "url": "/blog/building-ai-agents-with-rag"
+      },
+      "documentHash": "1780156644164",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "blog/designing-autonomous-robots.mdx": {
+      "document": {
+        "title": "Designing Autonomous Robots",
+        "description": "From sensors to Nav2 — how to architect mobile robots that navigate reliably in real environments.",
+        "date": "2024-10-02T00:00:00.000Z",
+        "tags": [
+          "Robotics",
+          "ROS",
+          "Navigation",
+          "SLAM"
+        ],
+        "published": true,
+        "body": {
+          "raw": "\nAutonomous mobile robots require tight integration between perception, localization, planning, and control. Here's how I approach system design.\n\n## The Perception Stack\n\nCameras and LiDAR provide complementary data. For indoor AMRs, 2D LiDAR plus depth cameras often suffice. Fuse inputs with a consistent timestamp using `message_filters` in ROS 2.\n\n## Localization & Mapping\n\nStart with **SLAM Toolbox** or **Cartographer** for mapping, then switch to **AMCL** or **localization-only** modes for deployment.\n\n## Navigation with Nav2\n\nNav2's behavior trees let you compose recovery behaviors:\n\n- Rotate in place when stuck\n- Back up and replan on failure\n- Dynamic obstacle handling with costmap updates\n\n## Testing Strategy\n\nSimulate in Gazebo before hardware tests. Record rosbags from production runs to replay edge cases offline.\n\n## Results\n\nProper tuning reduced navigation failures by 40% in cluttered warehouse aisles — mostly from costmap inflation and controller gain adjustments.\n",
+          "code": "var Component=(()=>{var p=Object.create;var r=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),v=(t,e)=>{for(var o in e)r(t,o,{get:e[o],enumerable:!0})},s=(t,e,o,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of m(e))!f.call(t,i)&&i!==o&&r(t,i,{get:()=>e[i],enumerable:!(a=u(e,i))||a.enumerable});return t};var y=(t,e,o)=>(o=t!=null?p(g(t)):{},s(e||!t||!t.__esModule?r(o,\"default\",{value:t,enumerable:!0}):o,t)),w=t=>s(r({},\"__esModule\",{value:!0}),t);var c=b((M,l)=>{l.exports=_jsx_runtime});var R={};v(R,{default:()=>h,frontmatter:()=>x});var n=y(c()),x={title:\"Designing Autonomous Robots\",description:\"From sensors to Nav2 \\u2014 how to architect mobile robots that navigate reliably in real environments.\",date:\"2024-10-02\",tags:[\"Robotics\",\"ROS\",\"Navigation\",\"SLAM\"],published:!0};function d(t){let e={code:\"code\",h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"Autonomous mobile robots require tight integration between perception, localization, planning, and control. Here's how I approach system design.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"the-perception-stack\",children:\"The Perception Stack\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Cameras and LiDAR provide complementary data. For indoor AMRs, 2D LiDAR plus depth cameras often suffice. Fuse inputs with a consistent timestamp using \",(0,n.jsx)(e.code,{children:\"message_filters\"}),\" in ROS 2.\"]}),`\n`,(0,n.jsx)(e.h2,{id:\"localization--mapping\",children:\"Localization & Mapping\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Start with \",(0,n.jsx)(e.strong,{children:\"SLAM Toolbox\"}),\" or \",(0,n.jsx)(e.strong,{children:\"Cartographer\"}),\" for mapping, then switch to \",(0,n.jsx)(e.strong,{children:\"AMCL\"}),\" or \",(0,n.jsx)(e.strong,{children:\"localization-only\"}),\" modes for deployment.\"]}),`\n`,(0,n.jsx)(e.h2,{id:\"navigation-with-nav2\",children:\"Navigation with Nav2\"}),`\n`,(0,n.jsx)(e.p,{children:\"Nav2's behavior trees let you compose recovery behaviors:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Rotate in place when stuck\"}),`\n`,(0,n.jsx)(e.li,{children:\"Back up and replan on failure\"}),`\n`,(0,n.jsx)(e.li,{children:\"Dynamic obstacle handling with costmap updates\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"testing-strategy\",children:\"Testing Strategy\"}),`\n`,(0,n.jsx)(e.p,{children:\"Simulate in Gazebo before hardware tests. Record rosbags from production runs to replay edge cases offline.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"results\",children:\"Results\"}),`\n`,(0,n.jsx)(e.p,{children:\"Proper tuning reduced navigation failures by 40% in cluttered warehouse aisles \\u2014 mostly from costmap inflation and controller gain adjustments.\"})]})}function h(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(d,{...t})}):d(t)}return w(R);})();\n;return Component;"
+        },
+        "_id": "blog/designing-autonomous-robots.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/designing-autonomous-robots.mdx",
+          "sourceFileName": "designing-autonomous-robots.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/designing-autonomous-robots"
+        },
+        "type": "Post",
+        "slug": "designing-autonomous-robots",
+        "url": "/blog/designing-autonomous-robots"
+      },
+      "documentHash": "1780156647010",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "blog/gpt-vs-bert-architecture.mdx": {
+      "document": {
+        "title": "GPT vs BERT Architecture Comparison",
+        "description": "Understanding encoder-only, decoder-only, and encoder-decoder transformers for different ML tasks.",
+        "date": "2024-08-20T00:00:00.000Z",
+        "tags": [
+          "Deep Learning",
+          "NLP",
+          "Transformers"
+        ],
+        "published": true,
+        "body": {
+          "raw": "\nChoosing the right transformer architecture depends on your task. Here's a concise comparison.\n\n## BERT (Encoder-Only)\n\n- **Training**: Masked language modeling — predict hidden tokens.\n- **Best for**: Classification, NER, embeddings, retrieval encoders.\n- **Inference**: Bidirectional context in one pass.\n\n## GPT (Decoder-Only)\n\n- **Training**: Causal language modeling — predict next token.\n- **Best for**: Text generation, chat, code completion, agents.\n- **Inference**: Autoregressive, left-to-right.\n\n## T5 / BART (Encoder-Decoder)\n\n- **Best for**: Summarization, translation, seq2seq tasks.\n\n## Practical Guidance\n\n| Task | Recommended |\n|------|-------------|\n| Semantic search encoder | BERT / E5 |\n| Chat / agents | GPT-class |\n| Summarization | T5 / fine-tuned GPT |\n\nModern LLMs (GPT-4, Claude) are decoder-only at scale, while RAG systems often pair a BERT-style encoder for retrieval with a GPT decoder for generation.\n",
+          "code": "var Component=(()=>{var g=Object.create;var i=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var T=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),y=(r,e)=>{for(var t in e)i(r,t,{get:e[t],enumerable:!0})},o=(r,e,t,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let d of m(e))!p.call(r,d)&&d!==t&&i(r,d,{get:()=>e[d],enumerable:!(c=u(e,d))||c.enumerable});return r};var x=(r,e,t)=>(t=r!=null?g(f(r)):{},o(e||!r||!r.__esModule?i(t,\"default\",{value:r,enumerable:!0}):t,r)),b=r=>o(i({},\"__esModule\",{value:!0}),r);var a=T((G,l)=>{l.exports=_jsx_runtime});var C={};y(C,{default:()=>h,frontmatter:()=>B});var n=x(a()),B={title:\"GPT vs BERT Architecture Comparison\",description:\"Understanding encoder-only, decoder-only, and encoder-decoder transformers for different ML tasks.\",date:\"2024-08-20\",tags:[\"Deep Learning\",\"NLP\",\"Transformers\"],published:!0};function s(r){let e={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",table:\"table\",tbody:\"tbody\",td:\"td\",th:\"th\",thead:\"thead\",tr:\"tr\",ul:\"ul\",...r.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"Choosing the right transformer architecture depends on your task. Here's a concise comparison.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"bert-encoder-only\",children:\"BERT (Encoder-Only)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Training\"}),\": Masked language modeling \\u2014 predict hidden tokens.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Best for\"}),\": Classification, NER, embeddings, retrieval encoders.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Inference\"}),\": Bidirectional context in one pass.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"gpt-decoder-only\",children:\"GPT (Decoder-Only)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Training\"}),\": Causal language modeling \\u2014 predict next token.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Best for\"}),\": Text generation, chat, code completion, agents.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Inference\"}),\": Autoregressive, left-to-right.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"t5--bart-encoder-decoder\",children:\"T5 / BART (Encoder-Decoder)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Best for\"}),\": Summarization, translation, seq2seq tasks.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"practical-guidance\",children:\"Practical Guidance\"}),`\n`,(0,n.jsxs)(e.table,{children:[(0,n.jsx)(e.thead,{children:(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.th,{children:\"Task\"}),(0,n.jsx)(e.th,{children:\"Recommended\"})]})}),(0,n.jsxs)(e.tbody,{children:[(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"Semantic search encoder\"}),(0,n.jsx)(e.td,{children:\"BERT / E5\"})]}),(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"Chat / agents\"}),(0,n.jsx)(e.td,{children:\"GPT-class\"})]}),(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"Summarization\"}),(0,n.jsx)(e.td,{children:\"T5 / fine-tuned GPT\"})]})]})]}),`\n`,(0,n.jsx)(e.p,{children:\"Modern LLMs (GPT-4, Claude) are decoder-only at scale, while RAG systems often pair a BERT-style encoder for retrieval with a GPT decoder for generation.\"})]})}function h(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(s,{...r})}):s(r)}return b(C);})();\n;return Component;"
+        },
+        "_id": "blog/gpt-vs-bert-architecture.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/gpt-vs-bert-architecture.mdx",
+          "sourceFileName": "gpt-vs-bert-architecture.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/gpt-vs-bert-architecture"
+        },
+        "type": "Post",
+        "slug": "gpt-vs-bert-architecture",
+        "url": "/blog/gpt-vs-bert-architecture"
+      },
+      "documentHash": "1780156649595",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "blog/ros-for-robotics-development.mdx": {
+      "document": {
+        "title": "ROS for Robotics Development",
+        "description": "Getting started with ROS 2 — nodes, topics, services, and best practices for scalable robot software.",
+        "date": "2024-06-10T00:00:00.000Z",
+        "tags": [
+          "ROS",
+          "Robotics",
+          "Tutorial"
+        ],
+        "published": true,
+        "body": {
+          "raw": "\nThe Robot Operating System (ROS) remains the de facto middleware for robotics R&D and production deployments.\n\n## ROS 1 vs ROS 2\n\nROS 2 brings:\n\n- DDS-based communication (real-time friendly)\n- Better security and multi-robot support\n- Native Windows support\n- Lifecycle nodes for managed states\n\n## Core Concepts\n\n**Nodes** are processes. **Topics** are async pub/sub channels. **Services** are sync RPC. **Actions** handle long-running tasks with feedback.\n\n```bash\nros2 run turtlesim turtlesim_node\nros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist \"{linear: {x: 2.0}}\"\n```\n\n## Project Structure\n\nUse colcon workspaces with clear package boundaries:\n\n- `perception` — drivers and detectors\n- `localization` — SLAM, AMCL\n- `navigation` — Nav2 configs\n- `bringup` — launch files\n\n## Tips\n\n- Always use `ros2 bag record` during field tests.\n- Parameterize everything — avoid hardcoded IPs and frame IDs.\n- Document your TF tree obsessively.\n\nROS 2 Humble on Ubuntu 22.04 is my recommended LTS stack for new projects.\n",
+          "code": "var Component=(()=>{var p=Object.create;var s=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,b=Object.prototype.hasOwnProperty;var f=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),y=(r,e)=>{for(var i in e)s(r,i,{get:e[i],enumerable:!0})},o=(r,e,i,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let t of m(e))!b.call(r,t)&&t!==i&&s(r,t,{get:()=>e[t],enumerable:!(c=u(e,t))||c.enumerable});return r};var S=(r,e,i)=>(i=r!=null?p(g(r)):{},o(e||!r||!r.__esModule?s(i,\"default\",{value:r,enumerable:!0}):i,r)),v=r=>o(s({},\"__esModule\",{value:!0}),r);var d=f((x,l)=>{l.exports=_jsx_runtime});var w={};y(w,{default:()=>h,frontmatter:()=>R});var n=S(d()),R={title:\"ROS for Robotics Development\",description:\"Getting started with ROS 2 \\u2014 nodes, topics, services, and best practices for scalable robot software.\",date:\"2024-06-10\",tags:[\"ROS\",\"Robotics\",\"Tutorial\"],published:!0};function a(r){let e={code:\"code\",h2:\"h2\",li:\"li\",p:\"p\",pre:\"pre\",span:\"span\",strong:\"strong\",ul:\"ul\",...r.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"The Robot Operating System (ROS) remains the de facto middleware for robotics R&D and production deployments.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"ros-1-vs-ros-2\",children:\"ROS 1 vs ROS 2\"}),`\n`,(0,n.jsx)(e.p,{children:\"ROS 2 brings:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"DDS-based communication (real-time friendly)\"}),`\n`,(0,n.jsx)(e.li,{children:\"Better security and multi-robot support\"}),`\n`,(0,n.jsx)(e.li,{children:\"Native Windows support\"}),`\n`,(0,n.jsx)(e.li,{children:\"Lifecycle nodes for managed states\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"core-concepts\",children:\"Core Concepts\"}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:\"Nodes\"}),\" are processes. \",(0,n.jsx)(e.strong,{children:\"Topics\"}),\" are async pub/sub channels. \",(0,n.jsx)(e.strong,{children:\"Services\"}),\" are sync RPC. \",(0,n.jsx)(e.strong,{children:\"Actions\"}),\" handle long-running tasks with feedback.\"]}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsxs)(e.code,{className:\"hljs language-bash\",children:[`ros2 run turtlesim turtlesim_node\nros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist `,(0,n.jsx)(e.span,{className:\"hljs-string\",children:'\"{linear: {x: 2.0}}\"'}),`\n`]})}),`\n`,(0,n.jsx)(e.h2,{id:\"project-structure\",children:\"Project Structure\"}),`\n`,(0,n.jsx)(e.p,{children:\"Use colcon workspaces with clear package boundaries:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.code,{children:\"perception\"}),\" \\u2014 drivers and detectors\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.code,{children:\"localization\"}),\" \\u2014 SLAM, AMCL\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.code,{children:\"navigation\"}),\" \\u2014 Nav2 configs\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.code,{children:\"bringup\"}),\" \\u2014 launch files\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"tips\",children:\"Tips\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[\"Always use \",(0,n.jsx)(e.code,{children:\"ros2 bag record\"}),\" during field tests.\"]}),`\n`,(0,n.jsx)(e.li,{children:\"Parameterize everything \\u2014 avoid hardcoded IPs and frame IDs.\"}),`\n`,(0,n.jsx)(e.li,{children:\"Document your TF tree obsessively.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"ROS 2 Humble on Ubuntu 22.04 is my recommended LTS stack for new projects.\"})]})}function h(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(a,{...r})}):a(r)}return v(w);})();\n;return Component;"
+        },
+        "_id": "blog/ros-for-robotics-development.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/ros-for-robotics-development.mdx",
+          "sourceFileName": "ros-for-robotics-development.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/ros-for-robotics-development"
+        },
+        "type": "Post",
+        "slug": "ros-for-robotics-development",
+        "url": "/blog/ros-for-robotics-development"
+      },
+      "documentHash": "1780156653309",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "title": "GPT vs BERT Architecture Comparison",
+  "description": "Understanding encoder-only, decoder-only, and encoder-decoder transformers for different ML tasks.",
+  "date": "2024-08-20T00:00:00.000Z",
+  "tags": [
+    "Deep Learning",
+    "NLP",
+    "Transformers"
+  ],
+  "published": true,
+  "body": {
+    "raw": "\nChoosing the right transformer architecture depends on your task. Here's a concise comparison.\n\n## BERT (Encoder-Only)\n\n- **Training**: Masked language modeling — predict hidden tokens.\n- **Best for**: Classification, NER, embeddings, retrieval encoders.\n- **Inference**: Bidirectional context in one pass.\n\n## GPT (Decoder-Only)\n\n- **Training**: Causal language modeling — predict next token.\n- **Best for**: Text generation, chat, code completion, agents.\n- **Inference**: Autoregressive, left-to-right.\n\n## T5 / BART (Encoder-Decoder)\n\n- **Best for**: Summarization, translation, seq2seq tasks.\n\n## Practical Guidance\n\n| Task | Recommended |\n|------|-------------|\n| Semantic search encoder | BERT / E5 |\n| Chat / agents | GPT-class |\n| Summarization | T5 / fine-tuned GPT |\n\nModern LLMs (GPT-4, Claude) are decoder-only at scale, while RAG systems often pair a BERT-style encoder for retrieval with a GPT decoder for generation.\n",
+    "code": "var Component=(()=>{var g=Object.create;var i=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var T=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),y=(r,e)=>{for(var t in e)i(r,t,{get:e[t],enumerable:!0})},o=(r,e,t,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let d of m(e))!p.call(r,d)&&d!==t&&i(r,d,{get:()=>e[d],enumerable:!(c=u(e,d))||c.enumerable});return r};var x=(r,e,t)=>(t=r!=null?g(f(r)):{},o(e||!r||!r.__esModule?i(t,\"default\",{value:r,enumerable:!0}):t,r)),b=r=>o(i({},\"__esModule\",{value:!0}),r);var a=T((G,l)=>{l.exports=_jsx_runtime});var C={};y(C,{default:()=>h,frontmatter:()=>B});var n=x(a()),B={title:\"GPT vs BERT Architecture Comparison\",description:\"Understanding encoder-only, decoder-only, and encoder-decoder transformers for different ML tasks.\",date:\"2024-08-20\",tags:[\"Deep Learning\",\"NLP\",\"Transformers\"],published:!0};function s(r){let e={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",table:\"table\",tbody:\"tbody\",td:\"td\",th:\"th\",thead:\"thead\",tr:\"tr\",ul:\"ul\",...r.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"Choosing the right transformer architecture depends on your task. Here's a concise comparison.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"bert-encoder-only\",children:\"BERT (Encoder-Only)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Training\"}),\": Masked language modeling \\u2014 predict hidden tokens.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Best for\"}),\": Classification, NER, embeddings, retrieval encoders.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Inference\"}),\": Bidirectional context in one pass.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"gpt-decoder-only\",children:\"GPT (Decoder-Only)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Training\"}),\": Causal language modeling \\u2014 predict next token.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Best for\"}),\": Text generation, chat, code completion, agents.\"]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Inference\"}),\": Autoregressive, left-to-right.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"t5--bart-encoder-decoder\",children:\"T5 / BART (Encoder-Decoder)\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"Best for\"}),\": Summarization, translation, seq2seq tasks.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"practical-guidance\",children:\"Practical Guidance\"}),`\n`,(0,n.jsxs)(e.table,{children:[(0,n.jsx)(e.thead,{children:(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.th,{children:\"Task\"}),(0,n.jsx)(e.th,{children:\"Recommended\"})]})}),(0,n.jsxs)(e.tbody,{children:[(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"Semantic search encoder\"}),(0,n.jsx)(e.td,{children:\"BERT / E5\"})]}),(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"Chat / agents\"}),(0,n.jsx)(e.td,{children:\"GPT-class\"})]}),(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"Summarization\"}),(0,n.jsx)(e.td,{children:\"T5 / fine-tuned GPT\"})]})]})]}),`\n`,(0,n.jsx)(e.p,{children:\"Modern LLMs (GPT-4, Claude) are decoder-only at scale, while RAG systems often pair a BERT-style encoder for retrieval with a GPT decoder for generation.\"})]})}function h(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(s,{...r})}):s(r)}return b(C);})();\n;return Component;"
+  },
+  "_id": "blog/gpt-vs-bert-architecture.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/gpt-vs-bert-architecture.mdx",
+    "sourceFileName": "gpt-vs-bert-architecture.mdx",
+    "sourceFileDir": "blog",
+    "contentType": "mdx",
+    "flattenedPath": "blog/gpt-vs-bert-architecture"
+  },
+  "type": "Post",
+  "slug": "gpt-vs-bert-architecture",
+  "url": "/blog/gpt-vs-bert-architecture"
+}

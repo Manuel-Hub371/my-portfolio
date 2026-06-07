@@ -1,0 +1,27 @@
+{
+  "title": "Designing Autonomous Robots",
+  "description": "From sensors to Nav2 — how to architect mobile robots that navigate reliably in real environments.",
+  "date": "2024-10-02T00:00:00.000Z",
+  "tags": [
+    "Robotics",
+    "ROS",
+    "Navigation",
+    "SLAM"
+  ],
+  "published": true,
+  "body": {
+    "raw": "\nAutonomous mobile robots require tight integration between perception, localization, planning, and control. Here's how I approach system design.\n\n## The Perception Stack\n\nCameras and LiDAR provide complementary data. For indoor AMRs, 2D LiDAR plus depth cameras often suffice. Fuse inputs with a consistent timestamp using `message_filters` in ROS 2.\n\n## Localization & Mapping\n\nStart with **SLAM Toolbox** or **Cartographer** for mapping, then switch to **AMCL** or **localization-only** modes for deployment.\n\n## Navigation with Nav2\n\nNav2's behavior trees let you compose recovery behaviors:\n\n- Rotate in place when stuck\n- Back up and replan on failure\n- Dynamic obstacle handling with costmap updates\n\n## Testing Strategy\n\nSimulate in Gazebo before hardware tests. Record rosbags from production runs to replay edge cases offline.\n\n## Results\n\nProper tuning reduced navigation failures by 40% in cluttered warehouse aisles — mostly from costmap inflation and controller gain adjustments.\n",
+    "code": "var Component=(()=>{var p=Object.create;var r=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),v=(t,e)=>{for(var o in e)r(t,o,{get:e[o],enumerable:!0})},s=(t,e,o,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of m(e))!f.call(t,i)&&i!==o&&r(t,i,{get:()=>e[i],enumerable:!(a=u(e,i))||a.enumerable});return t};var y=(t,e,o)=>(o=t!=null?p(g(t)):{},s(e||!t||!t.__esModule?r(o,\"default\",{value:t,enumerable:!0}):o,t)),w=t=>s(r({},\"__esModule\",{value:!0}),t);var c=b((M,l)=>{l.exports=_jsx_runtime});var R={};v(R,{default:()=>h,frontmatter:()=>x});var n=y(c()),x={title:\"Designing Autonomous Robots\",description:\"From sensors to Nav2 \\u2014 how to architect mobile robots that navigate reliably in real environments.\",date:\"2024-10-02\",tags:[\"Robotics\",\"ROS\",\"Navigation\",\"SLAM\"],published:!0};function d(t){let e={code:\"code\",h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"Autonomous mobile robots require tight integration between perception, localization, planning, and control. Here's how I approach system design.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"the-perception-stack\",children:\"The Perception Stack\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Cameras and LiDAR provide complementary data. For indoor AMRs, 2D LiDAR plus depth cameras often suffice. Fuse inputs with a consistent timestamp using \",(0,n.jsx)(e.code,{children:\"message_filters\"}),\" in ROS 2.\"]}),`\n`,(0,n.jsx)(e.h2,{id:\"localization--mapping\",children:\"Localization & Mapping\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Start with \",(0,n.jsx)(e.strong,{children:\"SLAM Toolbox\"}),\" or \",(0,n.jsx)(e.strong,{children:\"Cartographer\"}),\" for mapping, then switch to \",(0,n.jsx)(e.strong,{children:\"AMCL\"}),\" or \",(0,n.jsx)(e.strong,{children:\"localization-only\"}),\" modes for deployment.\"]}),`\n`,(0,n.jsx)(e.h2,{id:\"navigation-with-nav2\",children:\"Navigation with Nav2\"}),`\n`,(0,n.jsx)(e.p,{children:\"Nav2's behavior trees let you compose recovery behaviors:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Rotate in place when stuck\"}),`\n`,(0,n.jsx)(e.li,{children:\"Back up and replan on failure\"}),`\n`,(0,n.jsx)(e.li,{children:\"Dynamic obstacle handling with costmap updates\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{id:\"testing-strategy\",children:\"Testing Strategy\"}),`\n`,(0,n.jsx)(e.p,{children:\"Simulate in Gazebo before hardware tests. Record rosbags from production runs to replay edge cases offline.\"}),`\n`,(0,n.jsx)(e.h2,{id:\"results\",children:\"Results\"}),`\n`,(0,n.jsx)(e.p,{children:\"Proper tuning reduced navigation failures by 40% in cluttered warehouse aisles \\u2014 mostly from costmap inflation and controller gain adjustments.\"})]})}function h(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(d,{...t})}):d(t)}return w(R);})();\n;return Component;"
+  },
+  "_id": "blog/designing-autonomous-robots.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/designing-autonomous-robots.mdx",
+    "sourceFileName": "designing-autonomous-robots.mdx",
+    "sourceFileDir": "blog",
+    "contentType": "mdx",
+    "flattenedPath": "blog/designing-autonomous-robots"
+  },
+  "type": "Post",
+  "slug": "designing-autonomous-robots",
+  "url": "/blog/designing-autonomous-robots"
+}

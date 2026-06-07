@@ -1,0 +1,35 @@
+---
+title: "GPT vs BERT Architecture Comparison"
+description: "Understanding encoder-only, decoder-only, and encoder-decoder transformers for different ML tasks."
+date: 2024-08-20
+tags: ["Deep Learning", "NLP", "Transformers"]
+published: true
+---
+
+Choosing the right transformer architecture depends on your task. Here's a concise comparison.
+
+## BERT (Encoder-Only)
+
+- **Training**: Masked language modeling — predict hidden tokens.
+- **Best for**: Classification, NER, embeddings, retrieval encoders.
+- **Inference**: Bidirectional context in one pass.
+
+## GPT (Decoder-Only)
+
+- **Training**: Causal language modeling — predict next token.
+- **Best for**: Text generation, chat, code completion, agents.
+- **Inference**: Autoregressive, left-to-right.
+
+## T5 / BART (Encoder-Decoder)
+
+- **Best for**: Summarization, translation, seq2seq tasks.
+
+## Practical Guidance
+
+| Task | Recommended |
+|------|-------------|
+| Semantic search encoder | BERT / E5 |
+| Chat / agents | GPT-class |
+| Summarization | T5 / fine-tuned GPT |
+
+Modern LLMs (GPT-4, Claude) are decoder-only at scale, while RAG systems often pair a BERT-style encoder for retrieval with a GPT decoder for generation.
