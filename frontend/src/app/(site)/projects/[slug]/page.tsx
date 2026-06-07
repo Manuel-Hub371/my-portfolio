@@ -5,27 +5,29 @@ import { GitHubIcon } from "@/components/ui/SocialIcons";
 import { getProject, getProjects, getPortfolio } from "@/lib/content";
 import type { Project } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: { slug: string };
 }
 
 /* ─── Helpers ────────────────────────────────────────────────────────────────── */
 const techColors: Record<string, string> = {
-  Python:       "bg-blue-50 text-blue-700 border-blue-100",
-  TypeScript:   "bg-indigo-50 text-indigo-700 border-indigo-100",
-  React:        "bg-cyan-50 text-cyan-700 border-cyan-100",
-  "Next.js":    "bg-stone-100 text-stone-700 border-stone-200",
-  ROS:          "bg-emerald-50 text-emerald-700 border-emerald-100",
-  "ROS 2":      "bg-emerald-50 text-emerald-700 border-emerald-100",
-  OpenCV:       "bg-violet-50 text-violet-700 border-violet-100",
-  YOLO:         "bg-rose-50 text-rose-700 border-rose-100",
-  "GPT-4":      "bg-amber-50 text-amber-700 border-amber-100",
-  LangChain:    "bg-green-50 text-green-700 border-green-100",
-  FastAPI:      "bg-teal-50 text-teal-700 border-teal-100",
-  PostgreSQL:   "bg-sky-50 text-sky-700 border-sky-100",
-  Docker:       "bg-blue-50 text-blue-700 border-blue-100",
-  "Node.js":    "bg-lime-50 text-lime-700 border-lime-100",
-  MQTT:         "bg-orange-50 text-orange-700 border-orange-100",
+  Python: "bg-blue-50 text-blue-700 border-blue-100",
+  TypeScript: "bg-indigo-50 text-indigo-700 border-indigo-100",
+  React: "bg-cyan-50 text-cyan-700 border-cyan-100",
+  "Next.js": "bg-stone-100 text-stone-700 border-stone-200",
+  ROS: "bg-emerald-50 text-emerald-700 border-emerald-100",
+  "ROS 2": "bg-emerald-50 text-emerald-700 border-emerald-100",
+  OpenCV: "bg-violet-50 text-violet-700 border-violet-100",
+  YOLO: "bg-rose-50 text-rose-700 border-rose-100",
+  "GPT-4": "bg-amber-50 text-amber-700 border-amber-100",
+  LangChain: "bg-green-50 text-green-700 border-green-100",
+  FastAPI: "bg-teal-50 text-teal-700 border-teal-100",
+  PostgreSQL: "bg-sky-50 text-sky-700 border-sky-100",
+  Docker: "bg-blue-50 text-blue-700 border-blue-100",
+  "Node.js": "bg-lime-50 text-lime-700 border-lime-100",
+  MQTT: "bg-orange-50 text-orange-700 border-orange-100",
 };
 
 function techClass(tech: string) {

@@ -4,6 +4,8 @@ import { getPortfolio, getServices } from "@/lib/content";
 import { testimonials } from "@/data/portfolio";
 import type { Service } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const { siteConfig } = await getPortfolio();
   return {
@@ -344,11 +346,10 @@ export default async function ServicesPage() {
             {engagements.map((eng) => (
               <div
                 key={eng.title}
-                className={`relative flex flex-col rounded-2xl border p-7 shadow-sm transition-shadow hover:shadow-md ${
-                  eng.highlight
+                className={`relative flex flex-col rounded-2xl border p-7 shadow-sm transition-shadow hover:shadow-md ${eng.highlight
                     ? "border-blue-200 bg-gradient-to-b from-blue-50 to-white"
                     : "border-stone-200 bg-white"
-                }`}
+                  }`}
               >
                 {eng.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-blue-200 bg-blue-600 px-3 py-0.5 text-xs font-semibold text-white shadow-sm">
@@ -375,11 +376,10 @@ export default async function ServicesPage() {
                 <div className="mt-auto pt-6">
                   <Link
                     href="/contact"
-                    className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${
-                      eng.highlight
+                    className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${eng.highlight
                         ? "bg-blue-600 text-white hover:bg-blue-700"
                         : "border border-stone-200 bg-white text-stone-700 hover:bg-stone-50"
-                    }`}
+                      }`}
                   >
                     Get started
                     <ArrowRight size={13} />

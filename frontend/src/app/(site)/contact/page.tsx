@@ -1,6 +1,8 @@
 import { Contact } from "@/components/sections/Contact";
 import { getPortfolio } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const { siteConfig } = await getPortfolio();
   return {

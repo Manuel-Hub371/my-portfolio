@@ -5,6 +5,8 @@ import { getPortfolio, getProjects } from "@/lib/content";
 import { aiRoboticsShowcase } from "@/data/portfolio";
 import type { Project } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const { siteConfig } = await getPortfolio();
   return {
@@ -16,21 +18,21 @@ export async function generateMetadata() {
 
 /* ─── Tech tag colours ───────────────────────────────────────────────────────── */
 const techColors: Record<string, string> = {
-  Python:       "bg-blue-50 text-blue-700 border-blue-100",
-  TypeScript:   "bg-indigo-50 text-indigo-700 border-indigo-100",
-  React:        "bg-cyan-50 text-cyan-700 border-cyan-100",
-  "Next.js":    "bg-stone-100 text-stone-700 border-stone-200",
-  ROS:          "bg-emerald-50 text-emerald-700 border-emerald-100",
-  "ROS 2":      "bg-emerald-50 text-emerald-700 border-emerald-100",
-  OpenCV:       "bg-violet-50 text-violet-700 border-violet-100",
-  YOLO:         "bg-rose-50 text-rose-700 border-rose-100",
-  "GPT-4":      "bg-amber-50 text-amber-700 border-amber-100",
-  LangChain:    "bg-green-50 text-green-700 border-green-100",
-  FastAPI:      "bg-teal-50 text-teal-700 border-teal-100",
-  PostgreSQL:   "bg-sky-50 text-sky-700 border-sky-100",
-  Docker:       "bg-blue-50 text-blue-700 border-blue-100",
-  "Node.js":    "bg-lime-50 text-lime-700 border-lime-100",
-  MQTT:         "bg-orange-50 text-orange-700 border-orange-100",
+  Python: "bg-blue-50 text-blue-700 border-blue-100",
+  TypeScript: "bg-indigo-50 text-indigo-700 border-indigo-100",
+  React: "bg-cyan-50 text-cyan-700 border-cyan-100",
+  "Next.js": "bg-stone-100 text-stone-700 border-stone-200",
+  ROS: "bg-emerald-50 text-emerald-700 border-emerald-100",
+  "ROS 2": "bg-emerald-50 text-emerald-700 border-emerald-100",
+  OpenCV: "bg-violet-50 text-violet-700 border-violet-100",
+  YOLO: "bg-rose-50 text-rose-700 border-rose-100",
+  "GPT-4": "bg-amber-50 text-amber-700 border-amber-100",
+  LangChain: "bg-green-50 text-green-700 border-green-100",
+  FastAPI: "bg-teal-50 text-teal-700 border-teal-100",
+  PostgreSQL: "bg-sky-50 text-sky-700 border-sky-100",
+  Docker: "bg-blue-50 text-blue-700 border-blue-100",
+  "Node.js": "bg-lime-50 text-lime-700 border-lime-100",
+  MQTT: "bg-orange-50 text-orange-700 border-orange-100",
 };
 
 function techClass(tech: string) {
@@ -59,11 +61,11 @@ function projectInitials(name: string) {
 /* ─── AI & Robotics showcase icons ──────────────────────────────────────────── */
 const showcaseConfig = [
   { emoji: "🤖", bg: "bg-violet-50", border: "border-violet-100", text: "text-violet-600" },
-  { emoji: "👁️", bg: "bg-blue-50",   border: "border-blue-100",   text: "text-blue-600"   },
-  { emoji: "🦾", bg: "bg-emerald-50",border: "border-emerald-100",text: "text-emerald-600" },
-  { emoji: "🚗", bg: "bg-amber-50",  border: "border-amber-100",  text: "text-amber-600"  },
-  { emoji: "📡", bg: "bg-rose-50",   border: "border-rose-100",   text: "text-rose-600"   },
-  { emoji: "🏭", bg: "bg-cyan-50",   border: "border-cyan-100",   text: "text-cyan-600"   },
+  { emoji: "👁️", bg: "bg-blue-50", border: "border-blue-100", text: "text-blue-600" },
+  { emoji: "🦾", bg: "bg-emerald-50", border: "border-emerald-100", text: "text-emerald-600" },
+  { emoji: "🚗", bg: "bg-amber-50", border: "border-amber-100", text: "text-amber-600" },
+  { emoji: "📡", bg: "bg-rose-50", border: "border-rose-100", text: "text-rose-600" },
+  { emoji: "🏭", bg: "bg-cyan-50", border: "border-cyan-100", text: "text-cyan-600" },
 ];
 
 /* ─── Project card (compact, 3-per-row) ──────────────────────────────────────── */
@@ -186,7 +188,7 @@ export default async function ProjectsPage() {
           <div className="mt-8 flex flex-wrap gap-8">
             {[
               { value: `${projects.length}+`, label: "Featured projects" },
-              { value: "3",  label: "Domains" },
+              { value: "3", label: "Domains" },
               { value: "Production", label: "Grade" },
             ].map((s) => (
               <div key={s.label}>

@@ -6,6 +6,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getBlogPost, getBlogPosts, getPortfolio } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: { slug: string };
 }
@@ -27,15 +29,15 @@ function readingTime(body: string) {
 }
 
 const tagColors: Record<string, string> = {
-  AI:              "bg-violet-50 text-violet-700 border-violet-100",
-  RAG:             "bg-blue-50 text-blue-700 border-blue-100",
-  LangChain:       "bg-emerald-50 text-emerald-700 border-emerald-100",
-  LLM:             "bg-indigo-50 text-indigo-700 border-indigo-100",
+  AI: "bg-violet-50 text-violet-700 border-violet-100",
+  RAG: "bg-blue-50 text-blue-700 border-blue-100",
+  LangChain: "bg-emerald-50 text-emerald-700 border-emerald-100",
+  LLM: "bg-indigo-50 text-indigo-700 border-indigo-100",
   "Deep Learning": "bg-rose-50 text-rose-700 border-rose-100",
-  NLP:             "bg-amber-50 text-amber-700 border-amber-100",
-  Transformers:    "bg-cyan-50 text-cyan-700 border-cyan-100",
-  ROS:             "bg-orange-50 text-orange-700 border-orange-100",
-  Robotics:        "bg-teal-50 text-teal-700 border-teal-100",
+  NLP: "bg-amber-50 text-amber-700 border-amber-100",
+  Transformers: "bg-cyan-50 text-cyan-700 border-cyan-100",
+  ROS: "bg-orange-50 text-orange-700 border-orange-100",
+  Robotics: "bg-teal-50 text-teal-700 border-teal-100",
 };
 
 function tagClass(tag: string) {

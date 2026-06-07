@@ -11,6 +11,8 @@ import {
 } from "@/data/portfolio";
 import type { ResearchItem, CertificationItem, ExperienceItem, TestimonialItem } from "@/lib/admin-api";
 
+export const dynamic = "force-dynamic";
+
 async function getAboutSections() {
   try {
     const res = await fetch(`${getApiBaseUrl()}/api/content/portfolio`, { next: { revalidate: 0 } });
@@ -269,8 +271,8 @@ export default async function AboutPage() {
                 <div className="flex flex-col items-center">
                   <div
                     className={`mt-1 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold ${i === 0
-                        ? "border-blue-600 bg-blue-600 text-white"
-                        : "border-stone-300 bg-white text-stone-500"
+                      ? "border-blue-600 bg-blue-600 text-white"
+                      : "border-stone-300 bg-white text-stone-500"
                       }`}
                   >
                     {i + 1}
