@@ -2,22 +2,37 @@ import Link from "next/link";
 import { Download, ArrowRight, ExternalLink, MapPin, Mail } from "lucide-react";
 import { getPortfolio } from "@/lib/content";
 import { getApiBaseUrl } from "@/lib/api-base";
-import { skillCategories } from "@/data/portfolio";
+import {
+  experience as fallbackExperience,
+  certifications as fallbackCertifications,
+  researchItems as fallbackResearchItems,
+  testimonials as fallbackTestimonials,
+  skillCategories,
+} from "@/data/portfolio";
 import type { ResearchItem, CertificationItem, ExperienceItem, TestimonialItem } from "@/lib/admin-api";
 
 async function getAboutSections() {
-  const res = await fetch(`${getApiBaseUrl()}/api/content/portfolio`, { next: { revalidate: 0 } });
-  if (!res.ok) {
-    throw new Error("Unable to retrieve portfolio layout sections from MongoDB.");
+  try {
+    const res = await fetch(`${getApiBaseUrl()}/api/content/portfolio`, { next: { revalidate: 0 } });
+    if (!res.ok) {
+      throw new Error("Unable to retrieve portfolio layout sections from MongoDB.");
+    }
+    const data = await res.json();
+    const a = data?.aboutContent ?? {};
+    return {
+      experience: (a.experience ?? fallbackExperience) as ExperienceItem[],
+      certifications: (a.certifications ?? fallbackCertifications) as CertificationItem[],
+      research: (a.research ?? fallbackResearchItems) as ResearchItem[],
+      testimonials: (a.testimonials ?? fallbackTestimonials) as TestimonialItem[],
+    };
+  } catch {
+    return {
+      experience: fallbackExperience as ExperienceItem[],
+      certifications: fallbackCertifications as CertificationItem[],
+      research: fallbackResearchItems as ResearchItem[],
+      testimonials: fallbackTestimonials as TestimonialItem[],
+    };
   }
-  const data = await res.json();
-  const a = data?.aboutContent ?? {};
-  return {
-    experience:     (a.experience     ?? []) as ExperienceItem[],
-    certifications: (a.certifications ?? []) as CertificationItem[],
-    research:       (a.research       ?? []) as ResearchItem[],
-    testimonials:   (a.testimonials   ?? []) as TestimonialItem[],
-  };
 }
 
 
@@ -51,8 +66,8 @@ const catIconBg = [
 /* ─── Research type badge colours ────────────────────────────────────────────── */
 const researchBadge: Record<string, string> = {
   "Technical Article": "bg-blue-50 text-blue-700 border-blue-100",
-  "White Paper":       "bg-violet-50 text-violet-700 border-violet-100",
-  "Open Source":       "bg-emerald-50 text-emerald-700 border-emerald-100",
+  "White Paper": "bg-violet-50 text-violet-700 border-violet-100",
+  "Open Source": "bg-emerald-50 text-emerald-700 border-emerald-100",
 };
 
 export default async function AboutPage() {
@@ -253,11 +268,10 @@ export default async function AboutPage() {
                 {/* Timeline spine */}
                 <div className="flex flex-col items-center">
                   <div
-                    className={`mt-1 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold ${
-                      i === 0
+                    className={`mt-1 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold ${i === 0
                         ? "border-blue-600 bg-blue-600 text-white"
                         : "border-stone-300 bg-white text-stone-500"
-                    }`}
+                      }`}
                   >
                     {i + 1}
                   </div>
@@ -414,9 +428,8 @@ export default async function AboutPage() {
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <span
-                      className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${
-                        researchBadge[item.type] ?? "bg-stone-50 text-stone-600 border-stone-200"
-                      }`}
+                      className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${researchBadge[item.type] ?? "bg-stone-50 text-stone-600 border-stone-200"
+                        }`}
                     >
                       {item.type}
                     </span>
