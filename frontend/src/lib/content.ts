@@ -6,15 +6,21 @@ import {
   featuredProjects as fallbackProjects,
 } from "@/data/portfolio";
 
-async function fetchJson<T>(path: string): Promise<T | null> {
+async function fetchJson<T>(path: string, timeout = 5000): Promise<T | null> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
+
   try {
     const res = await fetch(`${getApiBaseUrl()}${path}`, {
+      signal: controller.signal,
       next: { revalidate: 0 },
     });
     if (!res.ok) return null;
     return res.json() as Promise<T>;
   } catch {
     return null;
+  } finally {
+    clearTimeout(timer);
   }
 }
 

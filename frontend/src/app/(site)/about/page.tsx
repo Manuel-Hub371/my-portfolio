@@ -14,8 +14,14 @@ import type { ResearchItem, CertificationItem, ExperienceItem, TestimonialItem }
 export const dynamic = "force-dynamic";
 
 async function getAboutSections() {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 5000);
+
   try {
-    const res = await fetch(`${getApiBaseUrl()}/api/content/portfolio`, { next: { revalidate: 0 } });
+    const res = await fetch(`${getApiBaseUrl()}/api/content/portfolio`, {
+      signal: controller.signal,
+      next: { revalidate: 0 },
+    });
     if (!res.ok) {
       throw new Error("Unable to retrieve portfolio layout sections from MongoDB.");
     }
@@ -34,6 +40,8 @@ async function getAboutSections() {
       research: fallbackResearchItems as ResearchItem[],
       testimonials: fallbackTestimonials as TestimonialItem[],
     };
+  } finally {
+    clearTimeout(timer);
   }
 }
 
