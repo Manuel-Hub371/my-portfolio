@@ -1,11 +1,8 @@
 /**
- * Browser: use same-origin `/api/*` (proxied by Next.js to the Express server).
- * Server: call Express directly via NEXT_PUBLIC_API_URL.
+ * For static deployment: always use the backend API URL directly
+ * Browser and Server: call Express API via NEXT_PUBLIC_API_URL
  */
 export function getApiBaseUrl(): string {
-  if (typeof window !== "undefined") {
-    return "";
-  }
   return process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 }
 

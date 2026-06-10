@@ -228,6 +228,10 @@ async function main() {
             }
         });
 
+        // Add admin routes for SPA fallback
+        const adminRoutes = ['/admin/login'];
+        adminRoutes.forEach((route) => routes.add(route));
+
         const routeList = Array.from(routes).sort();
         console.log('Exporting routes:', routeList);
 
