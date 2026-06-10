@@ -1,7 +1,5 @@
 import { withContentlayer } from "next-contentlayer2";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -9,14 +7,8 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${API_URL}/api/:path*`,
-      },
-    ];
-  },
+  // Note: rewrites don't work in static export (npm run build:dist)
+  // The frontend calls the API directly using NEXT_PUBLIC_API_URL
 };
 
 export default withContentlayer(nextConfig);
