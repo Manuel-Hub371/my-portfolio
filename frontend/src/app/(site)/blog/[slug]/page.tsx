@@ -4,9 +4,14 @@ import { format } from "date-fns";
 import { ArrowLeft, BookOpen, Calendar, Tag } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { allPosts } from "contentlayer/generated";
 import { getBlogPost, getBlogPosts, getPortfolio } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
 
 interface PageProps {
   params: { slug: string };

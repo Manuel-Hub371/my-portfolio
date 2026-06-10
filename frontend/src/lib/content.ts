@@ -1,4 +1,5 @@
 import { getApiBaseUrl } from "./api-base";
+import { allPosts } from "contentlayer/generated";
 import {
   siteConfig as fallbackSiteConfig,
   aboutContent as fallbackAboutContent,
@@ -117,12 +118,34 @@ export async function getProject(slug: string): Promise<Project | null> {
   return projects.find((p) => (p as Project & { id?: string }).id === slug) ?? null;
 }
 
+const fallbackBlogPosts: BlogPostSummary[] = allPosts.map((post) => ({
+  slug: post.slug,
+  title: post.title,
+  description: post.description,
+  tags: post.tags,
+  date: post.date as string,
+  url: post.url,
+})) as BlogPostSummary[];
+
 export async function getBlogPosts(): Promise<BlogPostSummary[]> {
   const data = await fetchJson<{ posts: BlogPostSummary[] }>("/api/content/blog");
-  return data?.posts ?? [];
+  return data?.posts ?? fallbackBlogPosts;
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPostFull | null> {
   const data = await fetchJson<BlogPostFull>(`/api/content/blog/${slug}`);
-  return data ?? null;
+  if (data) return data;
+
+  const post = allPosts.find((item) => item.slug === slug);
+  if (!post) return null;
+
+  return {
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    tags: post.tags,
+    date: post.date as string,
+    url: post.url,
+    body: post.body?.raw ?? "",
+  };
 }

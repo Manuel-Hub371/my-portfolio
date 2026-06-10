@@ -9,6 +9,7 @@ const DIST = path.join(ROOT, 'dist');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const NEXT_STATIC = path.join(ROOT, '.next', 'static');
 const ROUTES_MANIFEST = path.join(ROOT, '.next', 'routes-manifest.json');
+const SITE_APP_DIR = path.join(ROOT, 'src', 'app', '(site)');
 let PORT;
 
 function waitForServer(url, timeout = 30000) {
@@ -63,6 +64,88 @@ async function fetchHtml(route, timeout = 30000) {
     } finally {
         clearTimeout(timer);
     }
+}
+
+async function fetchJson(route, timeout = 30000) {
+    const url = `http://localhost:${PORT}${route}`;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+
+    try {
+        const res = await fetch(url, { signal: controller.signal });
+        if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
+        return await res.json();
+    } catch (err) {
+        if (err instanceof Error && err.name === 'AbortError') {
+            throw new Error(`JSON request timed out for ${url}`);
+        }
+        throw err;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+const BLOG_CONTENT_DIR = path.join(ROOT, 'content', 'blog');
+const PROJECTS_DATA_FILE = path.join(ROOT, 'src', 'data', 'portfolio.ts');
+
+async function getBlogSlugsFromContent() {
+    if (!fs.existsSync(BLOG_CONTENT_DIR)) return [];
+    return fs
+        .readdirSync(BLOG_CONTENT_DIR)
+        .filter((file) => file.endsWith('.mdx'))
+        .map((file) => file.replace(/\.mdx$/, ''))
+        .map((slug) => `/blog/${encodeURIComponent(slug)}`);
+}
+
+async function getProjectSlugsFromData() {
+    if (!fs.existsSync(PROJECTS_DATA_FILE)) return [];
+    const file = fs.readFileSync(PROJECTS_DATA_FILE, 'utf8');
+    const matches = Array.from(file.matchAll(/id:\s*"([^"]+)"/g));
+    return Array.from(new Set(matches.map((match) => match[1]))).map((slug) => `/projects/${encodeURIComponent(slug)}`);
+}
+
+async function getDynamicRoutes() {
+    const routes = [];
+
+    const blogRoutes = await getBlogSlugsFromContent();
+    if (blogRoutes.length > 0) {
+        routes.push(...blogRoutes);
+    } else {
+        try {
+            const blogData = await fetchJson('/api/content/blog');
+            if (Array.isArray(blogData?.posts)) {
+                routes.push(
+                    ...blogData.posts
+                        .map((post) => post?.slug)
+                        .filter(Boolean)
+                        .map((slug) => `/blog/${encodeURIComponent(slug)}`)
+                );
+            }
+        } catch (err) {
+            console.warn('Could not load blog routes:', err.message);
+        }
+    }
+
+    const projectRoutes = await getProjectSlugsFromData();
+    if (projectRoutes.length > 0) {
+        routes.push(...projectRoutes);
+    } else {
+        try {
+            const projectData = await fetchJson('/api/content/projects');
+            if (Array.isArray(projectData?.projects)) {
+                routes.push(
+                    ...projectData.projects
+                        .map((project) => (project?.id ?? project?.slug))
+                        .filter(Boolean)
+                        .map((slug) => `/projects/${encodeURIComponent(slug)}`)
+                );
+            }
+        } catch (err) {
+            console.warn('Could not load project routes:', err.message);
+        }
+    }
+
+    return routes;
 }
 
 function saveHtml(route, html) {
@@ -131,14 +214,24 @@ async function main() {
         fs.mkdirSync(DIST, { recursive: true });
 
         const manifest = JSON.parse(fs.readFileSync(ROUTES_MANIFEST, 'utf8'));
-        const routes = (manifest.staticRoutes || [])
-            .map((r) => r.page)
-            .filter(Boolean)
-            .filter(isExportableRoute);
+        const routes = new Set(
+            (manifest.staticRoutes || [])
+                .map((r) => r.page)
+                .filter(Boolean)
+                .filter(isExportableRoute)
+        );
 
-        console.log('Exporting routes:', routes);
+        const dynamicRoutes = await getDynamicRoutes();
+        dynamicRoutes.forEach((route) => {
+            if (isExportableRoute(route)) {
+                routes.add(route);
+            }
+        });
 
-        for (const route of routes) {
+        const routeList = Array.from(routes).sort();
+        console.log('Exporting routes:', routeList);
+
+        for (const route of routeList) {
             try {
                 const html = await fetchHtml(route);
                 saveHtml(route, html);
@@ -149,7 +242,7 @@ async function main() {
         }
 
         // Also export root if not present
-        if (!routes.includes('/')) {
+        if (!routes.has('/')) {
             try {
                 const html = await fetchHtml('/');
                 saveHtml('/', html);

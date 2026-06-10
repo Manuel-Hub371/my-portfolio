@@ -4,7 +4,7 @@ import { getPortfolio, getServices } from "@/lib/content";
 import { testimonials } from "@/data/portfolio";
 import type { Service } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export async function generateMetadata() {
   const { siteConfig } = await getPortfolio();
@@ -347,8 +347,8 @@ export default async function ServicesPage() {
               <div
                 key={eng.title}
                 className={`relative flex flex-col rounded-2xl border p-7 shadow-sm transition-shadow hover:shadow-md ${eng.highlight
-                    ? "border-blue-200 bg-gradient-to-b from-blue-50 to-white"
-                    : "border-stone-200 bg-white"
+                  ? "border-blue-200 bg-gradient-to-b from-blue-50 to-white"
+                  : "border-stone-200 bg-white"
                   }`}
               >
                 {eng.highlight && (
@@ -377,8 +377,8 @@ export default async function ServicesPage() {
                   <Link
                     href="/contact"
                     className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors ${eng.highlight
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "border border-stone-200 bg-white text-stone-700 hover:bg-stone-50"
+                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      : "border border-stone-200 bg-white text-stone-700 hover:bg-stone-50"
                       }`}
                   >
                     Get started

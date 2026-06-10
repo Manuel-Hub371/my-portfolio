@@ -3,7 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { getPortfolio } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 function NavbarFallback() {
   return <header className="h-14 border-b border-stone-200 bg-stone-50" />;

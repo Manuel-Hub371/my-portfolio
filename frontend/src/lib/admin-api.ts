@@ -42,7 +42,7 @@ export async function login(email: string, password: string) {
   if (!res.ok) {
     throw new Error((data.error as string) ?? "Login failed");
   }
-  return data as { token: string; user: { id: number; email: string } };
+  return data as { token: string; user: { id: string; email: string } };
 }
 
 export async function verifySession() {
@@ -55,7 +55,7 @@ export async function verifySession() {
     });
     if (!res.ok) return null;
     const data = await parseJsonResponse(res);
-    return data.user as { id: number; email: string };
+    return data.user as { id: string; email: string };
   } catch {
     return null;
   }

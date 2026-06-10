@@ -2,10 +2,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle, ExternalLink, XCircle } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
+import { featuredProjects } from "@/data/portfolio";
 import { getProject, getProjects, getPortfolio } from "@/lib/content";
 import type { Project } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  return featuredProjects.map((project) => ({
+    slug: project.id ?? project.name.toLowerCase().replace(/\s+/g, "-"),
+  }));
+}
 
 interface PageProps {
   params: { slug: string };

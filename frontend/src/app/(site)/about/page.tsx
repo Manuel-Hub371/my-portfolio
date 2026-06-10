@@ -11,7 +11,7 @@ import {
 } from "@/data/portfolio";
 import type { ResearchItem, CertificationItem, ExperienceItem, TestimonialItem } from "@/lib/admin-api";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 async function getAboutSections() {
   const controller = new AbortController();
